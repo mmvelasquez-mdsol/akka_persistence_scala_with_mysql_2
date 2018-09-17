@@ -1,6 +1,6 @@
 package com.mdsol.cqrs.write.exception
 
-import com.mdsol.cqrs.write.message.Metadata
+import com.mdsol.cqrs.event.Metadata
 
 sealed class CtaException(name: String, metadata: Metadata) extends Exception(name)
 

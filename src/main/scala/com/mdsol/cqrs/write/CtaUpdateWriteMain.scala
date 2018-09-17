@@ -3,9 +3,10 @@ package com.mdsol.cqrs.write
 import java.util.UUID
 
 import akka.actor.{ActorSystem, Props}
+import com.mdsol.cqrs.event.Metadata
 import com.mdsol.cqrs.write.dto.UpdateCtaRequestDto
 import com.mdsol.cqrs.write.handler.CtaCommandHandler
-import com.mdsol.cqrs.write.message._
+import com.mdsol.cqrs.write.command._
 
 // API Layer
 object CtaUpdateWriteMain extends App {
@@ -16,22 +17,22 @@ object CtaUpdateWriteMain extends App {
       "userUuid2",
       "txUuid2",
       "traceUuid2",
-      0, // Version for Stale state validation
-      "18267806-4595-413b-b674-99e0b0142441", // Cta Id - Aggregate Root Id
+      2, // Version for Stale state validation
+      "638de6aa-ddec-4bff-82dc-24302a7a8c3e", // Cta Id - Aggregate Root Id
       "Cta Name CCC"
     )
   updateCta(updateCtaRequestDto1)
 
-  val updateCtaRequestDto2 =
-    UpdateCtaRequestDto(
-      "userUuid3",
-      "txUuid3",
-      "traceUuid3",
-      0, // Version for Stale state validation
-      "18267806-4595-413b-b674-99e0b0142441", // Cta Id - Aggregate Root Id
-      "Cta Name DDD"
-    )
-  updateCta(updateCtaRequestDto2)
+//  val updateCtaRequestDto2 =
+//    UpdateCtaRequestDto(
+//      "userUuid3",
+//      "txUuid3",
+//      "traceUuid3",
+//      1, // Version for Stale state validation
+//      "9896c3eb-049c-4a46-89ef-7846cbd103af", // Cta Id - Aggregate Root Id
+//      "Cta Name DDD"
+//    )
+//  updateCta(updateCtaRequestDto2)
 
   println("All messages sent")
   Thread.sleep(5000)

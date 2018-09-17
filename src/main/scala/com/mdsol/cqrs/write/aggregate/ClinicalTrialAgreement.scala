@@ -5,8 +5,9 @@ import java.util.UUID
 
 import akka.actor.ActorLogging
 import akka.persistence.PersistentActor
+import com.mdsol.cqrs.event.{CtaCreated, CtaUpdated, DomainEvent}
 import com.mdsol.cqrs.write.exception.{OptimisticLockingException, StaleStateException}
-import com.mdsol.cqrs.write.message._
+import com.mdsol.cqrs.write.command._
 
 // Aggregate Root - Domain Layer
 class ClinicalTrialAgreement(guid: UUID) extends PersistentActor with ActorLogging {

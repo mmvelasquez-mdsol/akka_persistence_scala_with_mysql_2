@@ -3,9 +3,10 @@ package com.mdsol.cqrs.write
 import java.util.UUID
 
 import akka.actor.{ActorSystem, Props}
-import com.mdsol.cqrs.write.dto.{CreateCtaRequestDto}
+import com.mdsol.cqrs.event.Metadata
+import com.mdsol.cqrs.write.dto.CreateCtaRequestDto
 import com.mdsol.cqrs.write.handler.CtaCommandHandler
-import com.mdsol.cqrs.write.message._
+import com.mdsol.cqrs.write.command._
 
 // API Layer
 object CtaCreateWriteMain extends App {

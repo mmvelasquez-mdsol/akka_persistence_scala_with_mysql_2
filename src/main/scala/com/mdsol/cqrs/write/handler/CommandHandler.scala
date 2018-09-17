@@ -6,7 +6,7 @@ import akka.actor.{Actor, ActorLogging, OneForOneStrategy, Props}
 import akka.actor.SupervisorStrategy.Stop
 import com.mdsol.cqrs.write.aggregate.ClinicalTrialAgreement
 import com.mdsol.cqrs.write.exception.{OptimisticLockingException, StaleStateException}
-import com.mdsol.cqrs.write.message.{CreateCtaCommand, UpdateCtaCommand}
+import com.mdsol.cqrs.write.command.{CreateCtaCommand, UpdateCtaCommand}
 
 // Application Layer
 class CtaCommandHandler extends Actor with ActorLogging {
