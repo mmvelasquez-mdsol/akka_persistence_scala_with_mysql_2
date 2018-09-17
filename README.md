@@ -4,7 +4,7 @@ Akka Persistence with MySQL configured as Event Store.
  - Akka Persistence Query (Read): YES  
 
 Akka Persistence Plugin
-- Name: aakka-persistence-jdbc
+- Name: akka-persistence-jdbc
 - Version: 3.4.0
 - URL: https://index.scala-lang.org/dnvriend/akka-persistence-jdbc/akka-persistence-jdbc/3.4.0
 - GitHub: https://github.com/dnvriend/akka-persistence-jdbc
