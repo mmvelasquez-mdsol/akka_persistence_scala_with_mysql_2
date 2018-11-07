@@ -41,13 +41,15 @@ class ClinicalTrialAgreement(guid: UUID) extends PersistentActor with ActorLoggi
   }
 
   private def handleCreateCtaCommand(createCtaCommand: CreateCtaCommand): Unit = {
+    log.info(s"Receiving Command -> $createCtaCommand")
     val ctaCreated = CtaCreated(createCtaCommand.metadata, createCtaCommand.name)
     persist(ctaCreated) { event =>
       handleEvent(event)
     }
   }
 
-  private def handleUpdateCtaCommand(updateCtaCommand: UpdateCtaCommand): Unit =
+  private def handleUpdateCtaCommand(updateCtaCommand: UpdateCtaCommand): Unit = {
+    log.info(s"Receiving Command -> $updateCtaCommand")
     if (currentState.isVersionEqualTo(updateCtaCommand.metadata.version)) { // Verify stale state
       val updateEvent =
         CtaUpdated(updateCtaCommand.metadata.incrementVersion(), updateCtaCommand.name)
@@ -57,6 +59,7 @@ class ClinicalTrialAgreement(guid: UUID) extends PersistentActor with ActorLoggi
     } else {
       throw StaleStateException(updateCtaCommand.metadata) // It could be an event
     }
+  }
 
   override protected def onPersistFailure(cause: Throwable, event: Any, seqNr: Long): Unit = {
     super.onPersistFailure(cause, event, seqNr)
@@ -74,7 +77,7 @@ class ClinicalTrialAgreement(guid: UUID) extends PersistentActor with ActorLoggi
       case ctaUpdated: CtaUpdated => currentState.updated(ctaUpdated)
       case _ => currentState
     }
-    log.info(s"-> Current State - ${currentState.toString}")
+    log.info(s"-> Current State - ${currentState.toString} with SeqNr: $lastSequenceNr")
   }
 
 }
